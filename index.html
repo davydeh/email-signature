@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <main id="main">
+
+        <header class="header d-flex justify-content-between my-3 userSelect-none">
+            <!-- 
+                <img
+                    width="221"
+                    height="46"
+                    style="width: 221px; height: 46px; vertical-align: middle; border: none;"
+                    src="https://assets.pepper.com/assets/images/email-signature/logos/pepper.png"
+                /> 
+            -->
+            <button v-if="!editMode" class="btn btn-link mt-2" @click="editMode = true">Edit information</button>
+        </header>
+    
+        <div class="container p-5 border rounded-top">
+        
+            <div v-if="!editMode">
+                [SIGNATURE]
+    
+                <div class="userSelect-none mt-4">
+                    <h3 class="h3">Now what?</h3>
+                    <p>Don't know what to do? Check out this video on how to add your signature to your email accoun:</p>
+                    [THE VIDEO]
+                </div>
+            </div>
+    
+            <!-- FORM: Display if edit mode -->
+            <form :ref="form" class="form userSelect-none" :class="{ 'animateOut': !editMode, 'saved': hasBeenSaved }">
+                
+                <div class="form-group">
+                    <label for="platform">What platform do you work for?</label>
+                    <select 
+                            v-model="platform"
+                            class="form-control form-control-lg" 
+                            id="platform"
+                    >
+                        <option value="pepper">Pepper</option>
+                        <option value="chollometro">Chollometro</option>
+                        <option value="dealabs">Dealabs</option>
+                        <option value="hotukdeals">HotUKDeals</option>
+                        <option value="mydealz">mydealz</option>
+                        <option value="pelando">Pelando</option>
+                        <option value="pepper_nl">Pepper NL</option>
+                        <option value="pepper_pl">Pepper PL</option>
+                        <option value="pepper_ru">Pepper RU</option>
+                        <option value="preisjaeger">Preisjäger</option>
+                        <option value="promodescuentos">PromoDescuentos</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">What's your fullname?</label>
+                    <input 
+                            v-model="name"
+                            id="name"
+                            class="form-control form-control-lg"
+                            type="text"
+                    />
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">What's your role?</label>
+                    <input 
+                            v-model="role"
+                            id="role"
+                            class="form-control form-control-lg"
+                            type="text"
+                            
+                    />
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Your pepper email address?</label>
+                    <input 
+                            v-model="email"
+                            type="email" 
+                            class="form-control form-control-lg" 
+                            id="email"
+                    />
+                </div>
+                
+                <div class="form-group" v-if="!hidePhone">
+                    <label>Do you have any phone numbers?</label>
+                    <div class="mt-1">
+                        <a v-if="!hasWorkPhone" class="btn btn-light" href="" @click.prevent="hasWorkPhone = true">Add work number</a>
+                        <a v-if="!hasPersonalPhone" class="btn btn-light" href="" @click.prevent="hasPersonalPhone = true">Add personal number</a>
+                        <a class="btn btn-link" href="" @click.prevent="hidePhone = true">I don't have a phone number!</a>
+                    </div>
+                </div>
+    
+                <div class="form-group" v-if="!hidePhone && hasPersonalPhone">
+                    <label for="phone">Personal number</label>
+                    <a class="float-right" href="" @click.prevent="hasPersonalPhone = false">Remove</a>
+                    <input 
+                            v-model="phone"
+                            type="text" 
+                            class="form-control form-control-lg" 
+                            id="phone"
+                    />
+                </div>
+    
+                <div class="form-group" v-if="!hidePhone && hasWorkPhone">
+                    <label for="work_phone">Work Telephone</label>
+                    <a class="float-right" href="" @click.prevent="hasWorkPhone = false">Remove</a>
+                    <input 
+                            v-model="work_phone"
+                            type="text" 
+                            class="form-control form-control-lg" 
+                            id="work_phone"
+                    />
+                </div>
+    
+                <div class="text-center mt-5">
+                    <button 
+                        type="button" 
+                        class="btn btn-success btn-lg" 
+                        @click.submit.prevent="generateSignature()"
+                    >Generate my Email Signature</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    
+    <script src="vue.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

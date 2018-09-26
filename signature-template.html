@@ -1,0 +1,86 @@
+<table
+        cellpadding="0"
+        cellspacing="0"
+        border="0"
+        style="background: none; border-width: 0px; border: 0px; margin: 0; padding: 0; max-width: 100%;"
+>
+    <tbody>
+
+    <tr>
+        <td style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; padding-bottom: 2px;">{{ name }}</td>
+    </tr>
+
+    <tr>
+        <td style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; padding-bottom: 5px;">{{ role }}</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+
+    <tr v-if="hasPersonalPhone">
+        <td style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; padding-bottom: 5px;">Phone: {{ phone }}</td>
+    </tr>
+
+    <tr v-if="hasWorkPhone">
+        <td style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; padding-bottom: 5px;">Office phone: {{ work_phone }}</td>
+    </tr>
+
+    <tr>
+        <td style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">
+            <span style="padding-right: 4px">Email:</span>
+            <a :href="mailto" style="color: {{ platformData.color }}; text-decoration: none; font-weight: normal; font-size: 14px;">{{ email }}</a>
+        </td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+
+    <tr>
+        <td style="padding-bottom: 5px;">
+            <a v-html="platformData.job_ad" href="https://pepper.bamboohr.co.uk/jobs" style="text-decoration: none;"></a>
+        </td>
+    </tr>
+
+    <tr>
+        <td style="padding-top: 10px; padding-bottom: 10px;"><hr style="border-top: 0 none; border-color: #DDDDDD;"/></td>
+    </tr>
+
+    <tr>
+        <td v-html="platformData.logo" style="padding-bottom: 5px;"></td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+
+    <tr>
+        <td v-html="platformData.name" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; padding-bottom: 2px;"></td>
+    </tr>
+
+    <tr>
+        <td v-html="platformData.address" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; padding-bottom: 5px; color: #AAAAAA;"></td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+
+    <tr v-if="platformData.community">
+        <td v-html="platformData.community" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; vertical-align: middle; font-weight: bold;"></td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+
+    <tr>
+        <td style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 18px; padding-bottom: 7px;">
+            <b>Vision:</b> To be the best place for consumers to share their knowledge and learning from other experts to make the right decisions.
+        </td>
+    </tr>
+
+    <tr>
+        <td style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 18px; padding-bottom: 10px;">
+            <b>Mission:</b> Building a community driven platform consumers can trust. Enabling people to access all needed information while being open, inspiring and entertaining.
+        </td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+
+    <tr>
+        <td v-html="platformData.ceo" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; padding-bottom: 5px; color: #AAAAAA;"></td>
+    </tr>
+    </tbody>
+</table>
